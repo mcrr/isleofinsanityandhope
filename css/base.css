@@ -1,0 +1,178 @@
+body {
+    font-family: 'libre_bodoniregular', serif;
+}
+.row { padding: 1.5em; }
+.row.nopad { padding: 0; }
+.container {
+    margin: 2em auto;
+    padding: 3em 1em 2em 1em;
+}
+#ch_body img {
+    opacity: 0.8;
+    max-width: 60%;
+    max-height: 50rem;
+}
+#ch_body .img_container {
+    text-align: center;
+    width: 100%;
+}
+
+p { margin: 0 1em 2em 1em; }
+
+h1, h2 { font-family: 'ferrumextra-condensed', serif; }
+h2 { font-size: 2.8rem; }
+h2 { font-size: 1.8rem; }
+h1 + .subtitle { margin-top: 2em; }
+h1, .subtitle, .navlink, .citation { font-variant-caps: small-caps; }
+.subtitle { font-size: 1.2em; }
+.citation {
+    position: absolute;
+    bottom: 1ex;
+    right: 1ex;
+    color: grey;
+    opacity: 0.6;
+    font-size: 1rem;
+}
+
+hr {
+    border-top: 2px inset lightgray;
+    width: 80%;
+    margin: 0 auto 0.5em auto;
+}
+
+dd { margin-left: 1em; }
+.chapter_list {
+    border: 0.75ex double rgba(0, 0, 0, 0.8);
+    padding: 1em;
+    list-style-type: none;
+    columns: 2 auto;
+    column-gap: 3em;
+}
+.downloads { font-weight: bold; }
+.dl_arrow { width: 1em; vertical-align: -8% }
+.wrapshy { display: inline-block; }
+
+@font-face {
+    font-family: 'libre_bodoniregular';
+    src: url('../webfonts/librebodoni-regular-webfont.woff2') format('woff2'),
+         url('../webfonts/librebodoni-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ferrumextra-condensed';
+    src: url('../webfonts/ferrum-webfont.woff2') format('woff2'),
+         url('../webfonts/ferrum-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+/* Hide all the fancy background and border styling if printed */
+@media only print {
+    body, .container { min-width: auto !important; }
+    a.citation { display: none !important; }
+}
+@media only screen {
+
+  body {
+    background: #fcfcfa;
+    color: rgba(0, 0, 0, 0.8);
+    overflow-x: hidden;
+  }
+  .bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #aacae1 url(../images/clouds.jpg) repeat top center/250mm fixed;
+    z-index: -9999;
+  }
+
+  .bg_fadein {
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.5s;
+    animation-fill-mode:forwards;
+  }
+
+  /* Background pattern from Toptal Subtle Patterns */
+  .container, .row { background: white url(../images/lightpaperfibers.jpg); }
+  .container { min-height: calc(100vh - 4em); }
+  .wrap_front { min-height: calc(100vh - 21em); }
+  .wrap_attrib { min-height: calc(100vh - 15em); }
+}
+
+/* Don't show the cloud background on too-small screens */
+@media only screen and (max-width: 575px) {
+    .container {
+        margin: 0;
+        min-height: 100vh;
+    }
+    .wrap_front { min-height: calc(100vh - 17em); }
+}
+
+/* Use a maximum content width more like a portrait-oriented book */
+@media only screen and (min-width: 992px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+/* 2x paper background for retina devices */
+@media only screen and (min--moz-device-pixel-ratio: 2),
+       only screen and (-o-min-device-pixel-ratio: 2/1),
+       only screen and (-webkit-min-device-pixel-ratio: 2),
+       only screen and (min-device-pixel-ratio: 2) {
+ /* Background pattern from Toptal Subtle Patterns */
+ .container, .row { background: white url(../images/lightpaperfibers@2x.jpg); }
+}
+
+/* Make the content region look like a messy stack of papers
+ * https://css-tricks.com/snippets/css/stack-of-paper/ */
+@media only screen {
+.paper {
+  position: relative;
+}
+
+.paper,
+.paper::before,
+.paper::after {
+  /* Styles to distinguish sheets from one another */
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+  border: 1px solid #bbb;
+}
+
+.paper::before,
+.paper::after {
+  content: "";
+  position: absolute;
+  height: 95%;
+  width: 99%;
+  background-color: #eee;
+}
+
+.paper::before {
+  right: 15px;
+  top: 0;
+  transform: rotate(-1deg);
+  z-index: -1;
+}
+
+.paper::after {
+  top: 5px;
+  right: -5px;
+  transform: rotate(1deg);
+  z-index: -2;
+}
+}
